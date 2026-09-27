@@ -44,11 +44,13 @@ def toggle(item_id):
             return redirect("/")
     return "Item not found", 404
 
+
 @app.route("/clear-packed", methods=["POST"])
 def clear_packed():
     global items
     items = [i for i in items if not i["packed"]]
     return redirect("/")
+
 
 @app.route("/delete/<int:item_id>", methods=["POST"])
 def delete(item_id):
