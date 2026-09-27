@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PackWise - Smart Packing Checklist</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+    h1 { color: #2c3e50; }
+    form { margin-bottom: 20px; }
+    input { padding: 8px; margin-right: 6px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; }
+    .packed { text-decoration: line-through; color: gray; }
+    .category { font-size: 12px; color: #888; margin-left: 8px; }
+    footer { margin-top: 30px; font-size: 12px; color: #aaa; }
+  </style>
+</head>
+<body>
+  <h1>🧳 PackWise - Smart Packing Checklist</h1>
+  <p>{{ packed_count }} / {{ total }} items packed</p>
+
+  <form method="POST" action="/add">
+    <input name="name" placeholder="Item name (e.g. Passport)" required>
+    <input name="category" placeholder="Category (e.g. Travel)">
+    <button>Add Item</button>
+  </form>
+
+  <ul>
+    {% for item in items %}
+      <li>
+        <span class="{{ 'packed' if item.packed else '' }}">
+          {{ item.name }}<span class="category">[{{ item.category }}]</span>
+        </span>
+        <span>
+          <form method="POST" action="/toggle/{{ item.id }}" style="display:inline">
+            <button>{{ 'Unmark' if item.packed else 'Mark Packed' }}</button>
+          </form>
+          <form method="POST" action="/delete/{{ item.id }}" style="display:inline">
+            <button>Delete</button>
+          </form>
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <footer>commit {{ commit }}</footer>
+</body>
+</html>
