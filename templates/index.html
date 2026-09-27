@@ -18,6 +18,9 @@
 <body>
   <h1>🧳 PackWise - Smart Packing Checklist</h1>
   <p>{{ packed_count }} / {{ total }} items packed</p>
+  <form method="POST" action="/clear-packed" style="display:inline">
+    <button>Clear All Packed Items</button>
+  </form>
 
   <form method="POST" action="/add">
     <input name="name" placeholder="Item name (e.g. Passport)" required>
