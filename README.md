@@ -32,7 +32,7 @@ Then open http://localhost:5000
 2. **Deploy** — runs only on push to `main`, and only if tests pass, by calling the Render deploy hook
 
 ## Live app
-<PASTE YOUR RENDER URL HERE>
+https://packwise-5gv4.onrender.com
 
 ## Repository
-<PASTE YOUR GITHUB URL HERE>
+https://github.com/Darshan-Makvana/packwise
